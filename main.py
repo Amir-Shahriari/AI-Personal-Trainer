@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import os
 from transformers import pipeline
@@ -17,6 +18,14 @@ if not required_columns.issubset(yoga_data.columns):
 
 # Initialize FastAPI app
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # URL of your React app
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load Hugging Face sentence transformer model for embeddings
 from sentence_transformers import SentenceTransformer
