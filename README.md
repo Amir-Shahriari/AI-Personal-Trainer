@@ -139,16 +139,9 @@ Contributions are welcome! To contribute:
 
 ---
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
 
 ## Contact
 
 For questions or feedback, please contact:
-**Your Name** - [your.email@example.com](mailto:your.email@example.com)
+**Your Name** - [amirhossein.shahriari@yahoo.com](mailto:amirhossein.shahriari@yahoo.com)
 ```
-
-You can save this file as `README.md` in your GitHub repository. Let me know if you’d like to modify anything further!
