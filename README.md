@@ -1,3 +1,5 @@
+demo of the app:
+[Watch the video](https://www.dropbox.com/scl/fi/e4hxx11492sdvhbnntjix/Demo.mp4?rlkey=w73gethlnm9tvs490wlsy8m8a&st=hsfz2t2x&dl=0)
 
 # Personalized Yoga Coach API
 
