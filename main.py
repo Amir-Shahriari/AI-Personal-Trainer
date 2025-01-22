@@ -44,9 +44,17 @@ def preprocess_and_embed_data(data):
         text = f"{row['pose']} {row['definition']} {row['muscle_groups']}"
         embedding = embedding_model.encode(text)
         embeddings.append(embedding)
-        metadata.append(row.to_dict())  # Store metadata for retrieval
+        # Include image path in metadata
+        metadata.append({
+            "pose": row["pose"],
+            "definition": row["definition"],
+            "intensity": row["intensity"],
+            "duration": row["duration"],
+            "instructions": row["instructions"],
+            "muscle_groups": row["muscle_groups"],
+            "image": row.get("image", "")  # Default to an empty string if no image is provided
+        })
     embeddings = np.array(embeddings, dtype="float32")
-    
     # Add embeddings to the FAISS index
     index.add(embeddings)
     return metadata
@@ -105,7 +113,8 @@ def generate_plan(duration: int, intensity: str, muscles: list[str]):
                 "pose": pose["pose"],
                 "description": pose["definition"],
                 "duration": f"{pose_duration:.1f} minutes",
-                "instructions": pose["instructions"]
+                "instructions": pose["instructions"],
+                "image": pose["image"]  # Include the image path in the response
             })
             used_duration += pose_duration
 
@@ -124,6 +133,7 @@ def generate_plan(duration: int, intensity: str, muscles: list[str]):
 
     except Exception as e:
         return {"error": str(e)}
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
